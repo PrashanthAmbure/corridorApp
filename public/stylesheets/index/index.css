@@ -684,3 +684,7 @@ footer a {
 .sort-by md-select .md-select-value {
     border: 0 !important;
 }
+.introjs-helperNumberLayer {
+    width: 30px !important;
+    height: 30px !important;
+}

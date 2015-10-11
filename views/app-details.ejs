@@ -24,16 +24,19 @@
                                         <img ng-src="{{item.imgurl || '/images/default.png'}}">
                                     </div>
                                     <div class="app-intro" flex="55" flex-sm="100">
-                                        <div class="md-title">
-                                            {{item.name}}
+                                        <div data-step="4" data-step="4" data-intro="Application description." data-position="top">
+                                            <div class="md-title">
+                                                {{item.name}}
+                                            </div>
+                                            <div btf-markdown="item.shortDesc">
+                                            </div>
                                         </div>
-                                        <div btf-markdown="item.shortDesc">
-                                        </div>
-                                        <md-button class="md-raised md-primary pull-right" ng-click="expressInterestDetails($event)">
+                                        
+                                        <md-button class="md-raised md-primary pull-right" ng-click="expressInterestDetails($event)" data-step="8" data-intro="Liked the app? Willing to contribute?">
                                             Express Interest
                                         </md-button>
                                     </div>
-                                    <div class="app-summary" flex="25" flex-sm="100">
+                                    <div class="app-summary" flex="25" flex-sm="100" data-step="5" data-intro="Application Information.">
 
                                         <div layout="row" class="text-right" ng-if="item.createdAt">
                                             <span class="" flex="45">Posted date : </span>
@@ -60,7 +63,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <md-content layout-padding>
+                                <md-content layout-padding data-step="6" data-intro="Application details here." data-position="top">
                                     <md-tabs md-dynamic-height md-border-bottom>
                                         <md-tab label="Introduction" ng-if="item.longDesc">
                                             <md-content class="md-padding">
@@ -110,7 +113,7 @@
                             </div>
                         </div>
                         <div flex="20" flex-sm="100">
-                            <div class="proposer-details">
+                            <div class="proposer-details" data-step="7" data-intro="Questions? Mail us....">
                                 <!-- <div>
                                     % of completion
                                     <md-progress-linear md-mode="determinate" value="20">20</md-progress-linear>
@@ -166,6 +169,11 @@
             s.src = '//' + disqus_shortname + '.disqus.com/count.js';
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
+
+        setTimeout(function(){
+            introJs().start();
+        }, 1500);
+
     </script>
     <style type="text/css">
         .tab-content {

@@ -27,7 +27,7 @@
                 <div class="app-container">
 
                     <div style="position: relative;">
-                        <div class="sort-by">
+                        <div class="sort-by"  data-step="2" data-intro="Sort listed apps. <br> By default they are sorted by updated date.">
                             <md-input-container>
                                 <label >Sort By</label>
                                 <md-select ng-model="sortBy">
@@ -39,7 +39,7 @@
                     </div>
 
                     <md-content>
-                        <md-tabs md-dynamic-height md-border-bottom>
+                        <md-tabs md-dynamic-height md-border-bottom data-intro="Lists out all the published apps." data-position="top">
                             <md-tab label="{{key}}" ng-repeat="(key,tab) in apps">
                                 <md-content class="tiles-container">
                                     <div ng-if="!tab || tab.length ===0">
@@ -51,7 +51,10 @@
                                             </md-toolbar>
                                         </div>
                                     </div>
-                                    <div class="tiles" layout="row" layout-wrap>
+                                    <div class="tiles" layout="row" layout-wrap style="position:relative" >
+
+                                        <div class="tile-container" app-tile data-item="tab[0]" style="position:absolute;width:30%;left:2.5%;top:0;z-index:-1" data-step="3" data-intro="Click on the app to view details." data-position="top"></div>
+
                                         <div flex="30" flex-sm="100" class="tile-container fadein" app-tile data-item="item" ng-repeat="item in tab | orderBy: sortBy | limitTo: limit[key]">
                                         </div>
                                     </div>
@@ -90,7 +93,18 @@
         }, {
             "_id": "5603bcd04127193e156b435a"
         }];
+
+        setTimeout(function(){
+            introJs().setOption('doneLabel', 'Next page').start().oncomplete(function() {
+                    window.location.href = 'gallery/id/56022746b14391e21be35310?multipage=true';
+                });
+        }, 1500);
     </script>
+    <style type="text/css">
+        .introjs-fixParent {
+                position: inherit !important;
+        }
+    </style>
  
 
     <%- include common/footer.script.includes.ejs %>

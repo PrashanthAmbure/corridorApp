@@ -1,7 +1,7 @@
 <form name="updateForm" class="update-form" ng-submit="saveApp( $event )" novalidate ng-class="{'form-validate':updateForm.$showValidation}">
     <div ng-if="item">
         <div class="pull-right">
-        <md-button class="md-raised md-primary">
+        <md-button class="md-raised md-primary" data-step="2" data-intro="Save your changes and publish later.">
             <span ng-if="isPublished">
                 Update Changes
             </span>
@@ -9,7 +9,7 @@
                 Save to draft
             </span>
         </md-button>
-        <md-button ng-if="!isPublished" class="md-raised md-primary" ng-click="togglePublish( $event, isPublished ) ">
+        <md-button ng-if="!isPublished" class="md-raised md-primary" ng-click="togglePublish( $event, isPublished ) " data-step="3" data-intro="Publish to make it available for others.">
             Publish
         </md-button>
         <md-button ng-if="isPublished" class="md-raised md-warn" ng-click="togglePublish( $event, isPublished ) ">
@@ -29,7 +29,7 @@
       </span>
     </h1>
         <md-content layout-padding>
-            <md-tabs md-dynamic-height md-border-bottom md-selected="global.selectedIndex">
+            <md-tabs md-dynamic-height md-border-bottom md-selected="global.selectedIndex" data-step="1" data-intro="Fill in your application details. <br> #1. Information about your app. <br> #2. Solution to your app. <br> #3. Team members. <br> #4. Settings." data-position="top">
                 <md-tab label="Introduction">
                     <md-content class="tab-content">
                         <div>
@@ -263,3 +263,14 @@
         vertical-align: middle;
     }
 </style>
+
+<script type="text/javascript">
+if(!localStorage.getItem( 'visited-propose-form')){
+    localStorage.setItem('visited-propose-form', true);
+    setTimeout(function(){
+    introJs().setOption('doneLabel', 'Next Gallery').start().oncomplete(function() {
+        window.location.href = 'gallery?multipage=true';
+    });
+}, 1500);
+}
+</script>
